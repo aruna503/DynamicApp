@@ -1,57 +1,37 @@
-<plugin xmlns="http://apache.org/cordova/ns/plugins"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        id="cordova-plugin-dynamicappicon"
-        version="1.0.0">
+<platform name="android">
 
-    <name>Dynamic App Icon Switcher</name>
+    <!-- Tell Cordova which Java class implements the plugin -->
+    <config-file target="config.xml" parent="/*">
+        <feature name="DynamicIcon">
+            <param name="android-package" value="com.outsystems.dynamicappicon.DynamicIcon" />
+            <param name="onload" value="true" />
+        </feature>
+    </config-file>
 
-    <js-module src="www/DynamicIcon.js" name="DynamicIcon">
-        <clobbers target="DynamicIcon" />
-    </js-module>
+    <!-- Java file -->
+    <source-file
+        src="src/android/com/outsystems/dynamicappicon/DynamicIcon.java"
+        target-dir="app/src/main/java/com/outsystems/dynamicappicon" />
 
-    <platform name="android">
+    <!-- your resource-file entries stay as you already have them -->
+    <resource-file src="res/mipmap-hdpi/ic_launcher_normal.png"   target="app/src/main/res/mipmap-hdpi/ic_launcher_normal.png" />
+    <resource-file src="res/mipmap-hdpi/ic_launcher_premium.png"  target="app/src/main/res/mipmap-hdpi/ic_launcher_premium.png" />
+    <resource-file src="res/mipmap-hdpi/ic_launcher_private.png"  target="app/src/main/res/mipmap-hdpi/ic_launcher_private.png" />
 
-        <!-- Java file -->
-        <source-file 
-            src="src/android/com/outsystems/dynamicappicon/DynamicIcon.java"
-            target-dir="app/src/main/java/com/outsystems/dynamicappicon" />
+    <resource-file src="res/mipmap-mdpi/ic_launcher_normal.png"   target="app/src/main/res/mipmap-mdpi/ic_launcher_normal.png" />
+    <resource-file src="res/mipmap-mdpi/ic_launcher_premium.png"  target="app/src/main/res/mipmap-mdpi/ic_launcher_premium.png" />
+    <resource-file src="res/mipmap-mdpi/ic_launcher_private.png"  target="app/src/main/res/mipmap-mdpi/ic_launcher_private.png" />
 
-        <!-- Icon resources -->
-        <resource-file src="res/mipmap-hdpi/ic_launcher_normal.png"
-                       target="app/src/main/res/mipmap-hdpi/ic_launcher_normal.png" />
-        <resource-file src="res/mipmap-hdpi/ic_launcher_premium.png"
-                       target="app/src/main/res/mipmap-hdpi/ic_launcher_premium.png" />
-        <resource-file src="res/mipmap-hdpi/ic_launcher_private.png"
-                       target="app/src/main/res/mipmap-hdpi/ic_launcher_private.png" />
+    <resource-file src="res/mipmap-xhdpi/ic_launcher_normal.png"  target="app/src/main/res/mipmap-xhdpi/ic_launcher_normal.png" />
+    <resource-file src="res/mipmap-xhdpi/ic_launcher_premium.png" target="app/src/main/res/mipmap-xhdpi/ic_launcher_premium.png" />
+    <resource-file src="res/mipmap-xhdpi/ic_launcher_private.png" target="app/src/main/res/mipmap-xhdpi/ic_launcher_private.png" />
 
-        <resource-file src="res/mipmap-mdpi/ic_launcher_normal.png"
-                       target="app/src/main/res/mipmap-mdpi/ic_launcher_normal.png" />
-        <resource-file src="res/mipmap-mdpi/ic_launcher_premium.png"
-                       target="app/src/main/res/mipmap-mdpi/ic_launcher_premium.png" />
-        <resource-file src="res/mipmap-mdpi/ic_launcher_private.png"
-                       target="app/src/main/res/mipmap-mdpi/ic_launcher_private.png" />
+    <resource-file src="res/mipmap-xxhdpi/ic_launcher_normal.png"   target="app/src/main/res/mipmap-xxhdpi/ic_launcher_normal.png" />
+    <resource-file src="res/mipmap-xxhdpi/ic_launcher_premium.png"  target="app/src/main/res/mipmap-xxhdpi/ic_launcher_premium.png" />
+    <resource-file src="res/mipmap-xxhdpi/ic_launcher_private.png"  target="app/src/main/res/mipmap-xxhdpi/ic_launcher_private.png" />
 
-        <resource-file src="res/mipmap-xhdpi/ic_launcher_normal.png"
-                       target="app/src/main/res/mipmap-xhdpi/ic_launcher_normal.png" />
-        <resource-file src="res/mipmap-xhdpi/ic_launcher_premium.png"
-                       target="app/src/main/res/mipmap-xhdpi/ic_launcher_premium.png" />
-        <resource-file src="res/mipmap-xhdpi/ic_launcher_private.png"
-                       target="app/src/main/res/mipmap-xhdpi/ic_launcher_private.png" />
+    <resource-file src="res/mipmap-xxxhdpi/ic_launcher_normal.png"   target="app/src/main/res/mipmap-xxxhdpi/ic_launcher_normal.png" />
+    <resource-file src="res/mipmap-xxxhdpi/ic_launcher_premium.png"  target="app/src/main/res/mipmap-xxxhdpi/ic_launcher_premium.png" />
+    <resource-file src="res/mipmap-xxxhdpi/ic_launcher_private.png"  target="app/src/main/res/mipmap-xxxhdpi/ic_launcher_private.png" />
 
-        <resource-file src="res/mipmap-xxhdpi/ic_launcher_normal.png"
-                       target="app/src/main/res/mipmap-xxhdpi/ic_launcher_normal.png" />
-        <resource-file src="res/mipmap-xxhdpi/ic_launcher_premium.png"
-                       target="app/src/main/res/mipmap-xxhdpi/ic_launcher_premium.png" />
-        <resource-file src="res/mipmap-xxhdpi/ic_launcher_private.png"
-                       target="app/src/main/res/mipmap-xxhdpi/ic_launcher_private.png" />
-
-        <resource-file src="res/mipmap-xxxhdpi/ic_launcher_normal.png"
-                       target="app/src/main/res/mipmap-xxxhdpi/ic_launcher_normal.png" />
-        <resource-file src="res/mipmap-xxxhdpi/ic_launcher_premium.png"
-                       target="app/src/main/res/mipmap-xxxhdpi/ic_launcher_premium.png" />
-        <resource-file src="res/mipmap-xxxhdpi/ic_launcher_private.png"
-                       target="app/src/main/res/mipmap-xxxhdpi/ic_launcher_private.png" />
-
-    </platform>
-
-</plugin>
+</platform>
