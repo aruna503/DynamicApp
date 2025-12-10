@@ -1,8 +1,8 @@
 <platform name="android">
 
     <source-file 
-        src="src/android/com/outsystems/dynamicappicon/DynamicIcon.java"
-        target-dir="src/com/outsystems/dynamicappicon" />
+    src="src/android/com/outsystems/dynamicappicon/DynamicIcon.java"
+    target-dir="app/src/main/java/com/outsystems/dynamicappicon" />
 
     <resource-file src="res/mipmap-hdpi/ic_launcher_normal.png" target="res/mipmap-hdpi/" />
     <resource-file src="res/mipmap-hdpi/ic_launcher_premium.png" target="res/mipmap-hdpi/" />
@@ -25,3 +25,4 @@
     <resource-file src="res/mipmap-xxxhdpi/ic_launcher_private.png" target="res/mipmap-xxxhdpi/" />
 
 </platform>
+
