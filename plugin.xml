@@ -1,22 +1,22 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <plugin id="cordova-plugin-dynamicappicon"
         version="1.0.0"
         xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android">
-
+ 
     <name>Dynamic App Icon Switcher</name>
-
+ 
     <js-module name="DynamicIcon" src="www/DynamicIcon.js">
         <clobbers target="DynamicIcon" />
     </js-module>
-
+ 
     <platform name="android">
-
+ 
         <source-file src="src/android/DynamicIcon.java"
                      target-dir="src/com/outsystems/dynamicappicon" />
-
+ 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
-
+ 
             <!-- Normal icon alias -->
             <activity-alias
                 android:name=".IconNormal"
@@ -30,7 +30,7 @@
                     <category android:name="android.intent.category.LAUNCHER"/>
                 </intent-filter>
             </activity-alias>
-
+ 
             <!-- Premium icon alias -->
             <activity-alias
                 android:name=".IconPremium"
@@ -44,7 +44,7 @@
                     <category android:name="android.intent.category.LAUNCHER"/>
                 </intent-filter>
             </activity-alias>
-
+ 
             <!-- Private icon alias -->
             <activity-alias
                 android:name=".IconPrivate"
@@ -58,9 +58,10 @@
                     <category android:name="android.intent.category.LAUNCHER"/>
                 </intent-filter>
             </activity-alias>
-
+ 
         </config-file>
-
+ 
     </platform>
-
+ 
 </plugin>
+ 
