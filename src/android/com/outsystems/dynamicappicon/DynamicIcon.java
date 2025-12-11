@@ -6,7 +6,6 @@ import android.content.ComponentName;
  
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
- 
 import org.json.JSONArray;
  
 public class DynamicIcon extends CordovaPlugin {
@@ -22,41 +21,52 @@ public class DynamicIcon extends CordovaPlugin {
     }
  
     private void switchIcon(String icon, CallbackContext callback) {
-        Context context = cordova.getActivity().getApplicationContext();
-        PackageManager pm = context.getPackageManager();
-        String pkg = context.getPackageName();
+        try {
+            Context context = cordova.getActivity().getApplicationContext();
+            PackageManager pm = context.getPackageManager();
+            String pkg = context.getPackageName();
  
-        // alias names from AndroidManifest
-        String normalAlias = ".IconNormal";
-        String premiumAlias = ".IconPremium";
-        String privateAlias = ".IconPrivate";
+            String normalAlias  = pkg + ".IconNormal";
+            String premiumAlias = pkg + ".IconPremium";
+            String privateAlias = pkg + ".IconPrivate";
  
-        // disable all
-        setState(pm, pkg, normalAlias, false);
-        setState(pm, pkg, premiumAlias, false);
-        setState(pm, pkg, privateAlias, false);
+            // disable all
+            setState(pm, pkg, normalAlias, false);
+            setState(pm, pkg, premiumAlias, false);
+            setState(pm, pkg, privateAlias, false);
  
-        // enable selected
-        if ("premium".equalsIgnoreCase(icon)) {
-            setState(pm, pkg, premiumAlias, true);
-        } else if ("private".equalsIgnoreCase(icon)) {
-            setState(pm, pkg, privateAlias, true);
-        } else {
-            // default = normal
-            setState(pm, pkg, normalAlias, true);
+            // enable selected alias
+            String enabledAlias;
+            if ("premium".equalsIgnoreCase(icon)) {
+                enabledAlias = premiumAlias;
+            } else if ("private".equalsIgnoreCase(icon)) {
+                enabledAlias = privateAlias;
+            } else {
+                enabledAlias = normalAlias;
+            }
+ 
+            setState(pm, pkg, enabledAlias, true);
+ 
+            callback.success("Enabled alias: " + enabledAlias);
+ 
+        } catch (Exception e) {
+            callback.error("Error: " + e.getMessage());
         }
- 
-        callback.success("Icon changed");
     }
  
-    private void setState(PackageManager pm, String pkg, String alias, boolean enabled) {
-        ComponentName cn = new ComponentName(pkg, pkg + alias);
-        pm.setComponentEnabledSetting(
-            cn,
-            enabled ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
-                    : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-            PackageManager.DONT_KILL_APP
-        );
+    private void setState(PackageManager pm, String pkg, String fullAliasName, boolean enabled) throws Exception {
+        try {
+            ComponentName cn = new ComponentName(pkg, fullAliasName);
+ 
+            pm.setComponentEnabledSetting(
+                cn,
+                enabled ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+                        : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP
+            );
+        } catch (Exception e) {
+            throw new Exception("Failed for alias " + fullAliasName + ": " + e.getMessage());
+        }
     }
 }
  
