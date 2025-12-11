@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin id="cordova-plugin-dynamicappicon" version="1.0.4"
+<plugin id="cordova-plugin-dynamicappicon" version="1.0.5"
         xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android">
  
     <name>Dynamic App Icon Switcher</name>
  
-    <!-- JS Module -->
+    <!-- JS binding -->
     <js-module src="www/DynamicIcon.js" name="DynamicIcon">
         <clobbers target="DynamicIcon" />
     </js-module>
  
     <platform name="android">
  
-        <!-- Register Java Plugin -->
+        <!-- Register Java plugin -->
         <config-file target="config.xml" parent="/*">
             <feature name="DynamicIcon">
                 <param name="android-package" value="com.outsystems.dynamicappicon.DynamicIcon" />
             </feature>
         </config-file>
  
-        <!-- Patch AndroidManifest -->
+        <!-- Add activity-alias definitions -->
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
  
-            <!-- Disable OutSystems original launcher -->
+            <!-- Disable default launcher -->
             <activity
                 android:name="com.outsystemscloud.personalyybrgx5w.Test.MainActivity"
                 android:enabled="false" />
  
-            <!-- Normal Icon -->
+            <!-- Normal launcher -->
             <activity-alias
                 android:name="com.outsystemscloud.personalyybrgx5w.Test.IconNormal"
                 android:enabled="true"
@@ -41,7 +41,7 @@
                 </intent-filter>
             </activity-alias>
  
-            <!-- Premium Icon -->
+            <!-- Premium launcher -->
             <activity-alias
                 android:name="com.outsystemscloud.personalyybrgx5w.Test.IconPremium"
                 android:enabled="false"
@@ -55,7 +55,7 @@
                 </intent-filter>
             </activity-alias>
  
-            <!-- Private Icon -->
+            <!-- Private launcher -->
             <activity-alias
                 android:name="com.outsystemscloud.personalyybrgx5w.Test.IconPrivate"
                 android:enabled="false"
@@ -71,11 +71,10 @@
  
         </config-file>
  
-        <!-- Java Source -->
-        <source-file src="src/android/com/outsystems/dynamicappicon/DynamicIcon.java"
-                     target-dir="com/outsystems/dynamicappicon" />
- 
+        <!-- Java plugin file -->
+        <source-file 
+            src="src/android/com/outsystems/dynamicappicon/DynamicIcon.java"
+            target-dir="com/outsystems/dynamicappicon" />
     </platform>
- 
 </plugin>
  
