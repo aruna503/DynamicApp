@@ -1,78 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin id="cordova-plugin-dynamicappicon" version="1.0.10"
+<plugin id="cordova-plugin-dynamicappicon" version="1.0.3"
         xmlns="http://apache.org/cordova/ns/plugins"
         xmlns:android="http://schemas.android.com/apk/res/android">
  
-    <name>Dynamic App Icon Switcher</name>
+  <name>Dynamic App Icon Switcher</name>
  
-    <!-- JavaScript module -->
-    <js-module src="www/DynamicIcon.js" name="DynamicIcon">
-        <clobbers target="DynamicIcon" />
-    </js-module>
+  <!-- JS -->
+  <js-module src="www/DynamicIcon.js" name="DynamicIcon">
+    <clobbers target="DynamicIcon" />
+  </js-module>
  
-    <platform name="android">
+  <platform name="android">
  
-        <!-- Register Java class -->
-        <config-file target="config.xml" parent="/*">
-            <feature name="DynamicIcon">
-                <param name="android-package" value="com.outsystems.dynamicappicon.DynamicIcon" />
-                <param name="onload" value="true" />
-            </feature>
-        </config-file>
+    <!-- Link JS to Java -->
+    <config-file target="config.xml" parent="/*">
+      <feature name="DynamicIcon">
+        <param name="android-package" value="com.outsystems.dynamicappicon.DynamicIcon" />
+      </feature>
+    </config-file>
  
-        <!-- ACTIVITY ALIASES -->
-        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+    <!-- Activity aliases -->
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
  
-            <!-- NORMAL ICON -->
-            <activity-alias
-                android:name="${applicationId}.IconNormal"
-                android:enabled="true"
-                android:exported="true"
-                android:icon="@mipmap/ic_launcher"
-                android:label="@string/app_name"
-                android:targetActivity="${applicationId}.MainActivity">
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
-            </activity-alias>
+      <!-- DEFAULT ICON (ONLY ONE ENABLED) -->
+      <activity-alias
+          android:name=".IconNormal"
+          android:enabled="true"
+          android:exported="true"
+          android:icon="@mipmap/ic_launcher"
+          android:label="@string/app_name"
+          android:targetActivity=".MainActivity">
+        <intent-filter>
+          <action android:name="android.intent.action.MAIN" />
+          <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity-alias>
  
-            <!-- PREMIUM ICON -->
-            <activity-alias
-                android:name="${applicationId}.IconPremium"
-                android:enabled="false"
-                android:exported="true"
-                android:icon="@mipmap/ic_launcher"
-                android:label="@string/app_name"
-                android:targetActivity="${applicationId}.MainActivity">
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
-            </activity-alias>
+      <!-- OTHER ICONS DISABLED -->
+      <activity-alias
+          android:name=".IconPremium"
+          android:enabled="false"
+          android:exported="true"
+          android:icon="@mipmap/ic_launcher"
+          android:label="@string/app_name"
+          android:targetActivity=".MainActivity">
+      </activity-alias>
  
-            <!-- PRIVATE ICON -->
-            <activity-alias
-                android:name="${applicationId}.IconPrivate"
-                android:enabled="false"
-                android:exported="true"
-                android:icon="@mipmap/ic_launcher"
-                android:label="@string/app_name"
-                android:targetActivity="${applicationId}.MainActivity">
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
-            </activity-alias>
+      <activity-alias
+          android:name=".IconPrivate"
+          android:enabled="false"
+          android:exported="true"
+          android:icon="@mipmap/ic_launcher"
+          android:label="@string/app_name"
+          android:targetActivity=".MainActivity">
+      </activity-alias>
  
-        </config-file>
+    </config-file>
  
-        <!-- Java source -->
-        <source-file
-            src="src/android/com/outsystems/dynamicappicon/DynamicIcon.java"
-            target-dir="com/outsystems/dynamicappicon" />
+    <!-- Java -->
+    <source-file src="src/android/com/outsystems/dynamicappicon/DynamicIcon.java"
+                 target-dir="com/outsystems/dynamicappicon" />
  
-    </platform>
- 
+  </platform>
 </plugin>
  
